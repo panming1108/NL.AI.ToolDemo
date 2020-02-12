@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5F554805-4A19-4A76-A20E-87E692EDB231}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NL.AI.ToolDemo.ECGData.Views</RootNamespace>
+    <AssemblyName>NL.AI.ToolDemo.ECGData.Views</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NL.CardioReader.CommonControlsSource.DMs.WPF4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NL.CardioReader.CommonControlsSource.DMs.WPF4.1.4.12\lib\net40\NL.CardioReader.CommonControlsSource.DMs.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="NL.CardioReader.CommonControlsSource.Editors.WPF4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NL.CardioReader.CommonControlsSource.Editors.WPF4.1.5.3\lib\net40\NL.CardioReader.CommonControlsSource.Editors.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="NL.CardioReader.CommonControlsSource.FMs.WPF4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NL.CardioReader.CommonControlsSource.FMs.WPF4.1.4.2\lib\net40\NL.CardioReader.CommonControlsSource.FMs.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="NL.CardioReader.CommonControlsSource.Navis.WPF4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NL.CardioReader.CommonControlsSource.Navis.WPF4.1.4.14\lib\net40\NL.CardioReader.CommonControlsSource.Navis.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="NL.CardioReader.VoidPower.VOnly.IF.WPF4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NL.CardioReader.VoidPower.VOnly.IF.WPF4.1.3.3\lib\net40\NL.CardioReader.VoidPower.VOnly.IF.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="NL.CardioReader.VoidPower.WPFLib.WPF4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NL.CardioReader.VoidPower.WPFLib.WPF4.1.0.5\lib\net40\NL.CardioReader.VoidPower.WPFLib.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataListView.xaml.cs">
+      <DependentUpon>DataListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="DataListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Resource Include="Generic\Style.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NL.AI.ToolDemo.Controls\NL.AI.ToolDemo.Controls.csproj">
+      <Project>{000a5e2c-8958-4942-9dad-7387650a70b0}</Project>
+      <Name>NL.AI.ToolDemo.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NL.AI.ToolDemo.ECGData.IViewModels\NL.AI.ToolDemo.ECGData.IViewModels.csproj">
+      <Project>{0830eaec-5636-4adb-b5e5-fd34236a39c7}</Project>
+      <Name>NL.AI.ToolDemo.ECGData.IViewModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

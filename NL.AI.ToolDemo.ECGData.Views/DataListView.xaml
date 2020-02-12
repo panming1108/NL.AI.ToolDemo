@@ -1,0 +1,166 @@
+﻿<UserControl x:Class="NL.AI.ToolDemo.ECGData.Views.DataListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NL.AI.ToolDemo.ECGData.Views"
+             xmlns:editors="clr-namespace:NL.CardioReader.CommonControlsSource.Editors;assembly=NL.CardioReader.CommonControlsSource.Editors.WPF4"
+             xmlns:navis="clr-namespace:NL.CardioReader.CommonControlsSource.Navis;assembly=NL.CardioReader.CommonControlsSource.Navis.WPF4"
+             xmlns:dms="clr-namespace:NL.CardioReader.CommonControlsSource.DMs;assembly=NL.CardioReader.CommonControlsSource.DMs.WPF4"
+             xmlns:fm="clr-namespace:NL.CardioReader.CommonControlsSource.FMs;assembly=NL.CardioReader.CommonControlsSource.FMs.WPF4"
+             xmlns:wpfLib="clr-namespace:NL.CardioReader.VoidPower.WPFLib;assembly=NL.CardioReader.VoidPower.WPFLib.WPF4"
+             xmlns:controls="clr-namespace:NL.AI.ToolDemo.Controls;assembly=NL.AI.ToolDemo.Controls"
+             wpfLib:FELifeAttachCommand.LoadedCommand="{Binding LoadedCommand}"
+             wpfLib:FELifeAttachCommand.UnLoadedCommand="{Binding UnLoadedCommand}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="68"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#1B2140" Margin="0,0,0,13">
+            <Grid HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" Margin="13,0">
+                    
+                    <editors:EMCInput Height="40" 
+                                      Width="180"
+                                      Watermark="患者姓名"
+                                      Text="{Binding PatientName, Mode=TwoWay}"/>
+                    <editors:EMCComboBox Height="40" 
+                                         Width="70"
+                                         Margin="20,0"
+                                         Watermark="性别"
+                                         ItemsSource="{Binding GenderSource}"
+                                         SelectedValue="{Binding SelectedGender}"
+                                         DisplayMemberPath="Description"
+                                         SelectedValuePath="Id"/>
+                    <editors:EMCInput Height="40" 
+                                      Width="70"
+                                      Watermark="年龄"
+                                      Text="{Binding PatientAge, Mode=TwoWay}"/>
+                    <editors:EMCInput Height="40" 
+                                      Width="300"
+                                      Margin="20,0"
+                                      Watermark="AI诊断"
+                                      Text="{Binding AIDiagnosis, Mode=TwoWay}"/>
+                    <navis:EMCButton Content="查询"
+                                     Width="90"
+                                     Height="40"
+                                     Command="{Binding SearchCommand}"/>
+                    <ToggleButton Style="{StaticResource AITool_ECGData_ToggleBtnStyle}"
+                                  x:Name="PART_ToggleButton"
+                                  Margin="13,0,0,0"/>
+                </StackPanel>
+            </Grid>
+            <Grid HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal" Margin="13,0">
+                    <controls:ImportFileBtn Content="导入"
+                                            Width="90"
+                                            Background="#1B9AF7"
+                                            Height="40"
+                                            Command="{Binding ImportCommand}"/>
+                    <navis:EMCButton Content="文件打包"
+                                     Width="90"
+                                     Margin="20,0"
+                                     Height="40"/>
+                    <navis:EMCButton Content="重新分析"
+                                     Width="90"
+                                     Height="40"/>
+                    <navis:EMCButton Content="清理文件"
+                                     Width="90"
+                                     Margin="20,0"
+                                     Height="40"/>
+                    <navis:EMCButton Content="删除"
+                                     Width="90"
+                                     Background="Red"
+                                     Height="40"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <dms:EMCGridView Grid.Row="1" 
+                         FontWeight="Light"
+                         RowHeight="50"
+                         BorderThickness="0"
+                         FontSize="16"
+                         ItemsSource="{Binding DataInfos}"
+                         IsUseDataPager="False"
+                         CanUserSortColumns="False"
+                         CanUserReorderColumns="False">
+            <dms:EMCGridView.Columns>
+                <DataGridTemplateColumn Header="     患者姓名" Width="1.5*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="16" Height="16">
+                                    <Path Stroke="#E5E6FF"
+                                          RenderOptions.EdgeMode="Aliased"                                    
+                                          StrokeThickness="1"
+                                          Stretch="Uniform"
+                                          Visibility="{Binding IsFileLost, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                          Data="M10,10 23,10 M14,7 19,7 M11,10 11,22 21,22 21,10 M13,10 13,22 M15,10 15,22 M17,10 17,22 M19,10 19,22"/>
+                                </Border>
+                                <TextBlock Margin="10,0,0,0"
+                                           Text="{Binding PatientName}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="性别" Width="1*" Binding="{Binding PatientGender}"/>
+                <DataGridTemplateColumn Header="年龄" Width="1*"/>
+                <DataGridTextColumn Header="文件位置" Width="3*" Binding="{Binding LocalFileUrl}"/>
+                <DataGridTextColumn Header="AI诊断" Width="3*" Binding="{Binding AIDiagnosis}"/>
+                <DataGridTextColumn Header="备注" Width="3*" Binding="{Binding Remark}"/>
+            </dms:EMCGridView.Columns>
+        </dms:EMCGridView>
+        <dms:EMCDataPager Grid.Row="2"
+                          PageSize="{Binding PageSize,Mode=TwoWay}"
+                          PageNo="{Binding PageNo,Mode=TwoWay}"
+                          NumericButtonCount="7"
+                          PageSizeSource="{Binding PageSizeSource}"
+                          ItemCount="{Binding ItemCount}"/>
+        <Border Grid.RowSpan="2" 
+                Height="110"  
+                BorderThickness="1"
+                BorderBrush="White"
+                Width="705"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Visibility="{Binding ElementName=PART_ToggleButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="1"
+                            Orientation="Horizontal"
+                            Background="#1B2140">
+                    <editors:EMCInput Width="333" 
+                                      Height="40"
+                                      Margin="13,0,0,5"
+                                      Watermark="备注"
+                                      Text="{Binding Remark,Mode=TwoWay}"/>
+                    <editors:EMCInput Width="333" 
+                                      Height="40"
+                                      Margin="13,0,0,5"
+                                      Watermark="文件浏览"
+                                      Text="{Binding LocalFileUrl,Mode=TwoWay}">
+                        <editors:EMCInput.RightContent>
+                            <fm:EMCFileDialog Width="50" 
+                                              Height="30" 
+                                              Margin="0,0,5,0"
+                                              Background="White"
+                                              Content="浏览"
+                                              Foreground="Black"
+                                              FilePath="{Binding LocalFileUrl, Mode=OneWayToSource}"/>
+                        </editors:EMCInput.RightContent>
+                    </editors:EMCInput>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
