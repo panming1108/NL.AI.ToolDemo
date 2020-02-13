@@ -172,6 +172,8 @@
     </Compile>
     <Compile Include="DialogFactoryConsumerEx.cs" />
     <Compile Include="IViewModels\IMainViewModel.cs" />
+    <Compile Include="ProcessMessageHelper.cs" />
+    <Compile Include="SingleProcessWindow.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="TransformPage.xaml.cs">
       <DependentUpon>TransformPage.xaml</DependentUpon>
@@ -264,9 +266,17 @@
       <Project>{5f554805-4a19-4a76-a20e-87e692edb231}</Project>
       <Name>NL.AI.ToolDemo.ECGData.Views</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NL.AI.ToolDemo.Enum\NL.AI.ToolDemo.Enum.csproj">
+      <Project>{FBADF3DE-E4FD-4412-B5C4-880E5FE46369}</Project>
+      <Name>NL.AI.ToolDemo.Enum</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NL.AI.ToolDemo.Model\NL.AI.ToolDemo.Model.csproj">
       <Project>{7934c3fb-d9c1-4dcd-9cc1-886e273c520b}</Project>
       <Name>NL.AI.ToolDemo.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NL.AI.ToolDemo.Modules.ProcessControl\NL.AI.ToolDemo.Modules.ProcessControl.csproj">
+      <Project>{2E8A99D4-8549-456B-9B33-667632995798}</Project>
+      <Name>NL.AI.ToolDemo.Modules.ProcessControl</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

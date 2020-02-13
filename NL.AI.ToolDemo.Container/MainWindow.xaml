@@ -1,24 +1,24 @@
-﻿<Window x:Class="NL.AI.ToolDemo.Container.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:NL.AI.ToolDemo.Container"
-        xmlns:mainFrame="clr-namespace:NL.CardioReader.CommonControlsSource.MainFrame;assembly=NL.CardioReader.CommonControlsSource.MainFrame.WPF4"
-        xmlns:EMCMenu="clr-namespace:NL.CardioReader.CommonControlsSource.Navis;assembly=NL.CardioReader.CommonControlsSource.Navis.WPF4"
-        xmlns:loadCommand="clr-namespace:NL.CardioReader.VoidPower.WPFLib;assembly=NL.CardioReader.VoidPower.WPFLib.WPF4"
-        xmlns:model="clr-namespace:NL.AI.ToolDemo.Model;assembly=NL.AI.ToolDemo.Model"
-        loadCommand:FELifeAttachCommand.LoadedCommand="{Binding LoadedCommand}"
-        loadCommand:FELifeAttachCommand.UnLoadedCommand="{Binding UnLoadedCommand}"
-        mc:Ignorable="d" AllowsTransparency="True" WindowStyle="None"
-        Title="MainWindow" Height="450" Width="800">
-    <Window.Resources>
+﻿<local:SingleProcessWindow x:Class="NL.AI.ToolDemo.Container.MainWindow"
+                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                           xmlns:local="clr-namespace:NL.AI.ToolDemo.Container"
+                           xmlns:mainFrame="clr-namespace:NL.CardioReader.CommonControlsSource.MainFrame;assembly=NL.CardioReader.CommonControlsSource.MainFrame.WPF4"
+                           xmlns:EMCMenu="clr-namespace:NL.CardioReader.CommonControlsSource.Navis;assembly=NL.CardioReader.CommonControlsSource.Navis.WPF4"
+                           xmlns:loadCommand="clr-namespace:NL.CardioReader.VoidPower.WPFLib;assembly=NL.CardioReader.VoidPower.WPFLib.WPF4"
+                           xmlns:model="clr-namespace:NL.AI.ToolDemo.Model;assembly=NL.AI.ToolDemo.Model"
+                           loadCommand:FELifeAttachCommand.LoadedCommand="{Binding LoadedCommand}"
+                           loadCommand:FELifeAttachCommand.UnLoadedCommand="{Binding UnLoadedCommand}"
+                           mc:Ignorable="d" AllowsTransparency="True" WindowStyle="None"
+                           Title="NL.AI.ToolDemo.Container" Height="450" Width="800">
+    <local:SingleProcessWindow.Resources>
         <HierarchicalDataTemplate x:Key="VerticalMenuItemTemplate"
                                       DataType="{x:Type model:MenuNode}"
                                       ItemsSource="{Binding Children}">
             <ContentPresenter Content="{Binding}" />
         </HierarchicalDataTemplate>
-    </Window.Resources>
+    </local:SingleProcessWindow.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -59,4 +59,4 @@
                    Source="{Binding CurrentPage}"/>
         </Grid>
     </Grid>
-</Window>
+</local:SingleProcessWindow>

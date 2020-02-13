@@ -1,4 +1,5 @@
 ﻿using NL.AI.ToolDemo.ECGData.IViewModels;
+using NL.AI.ToolDemo.Enum;
 using NL.AI.ToolDemo.IBLL;
 using NL.AI.ToolDemo.Model;
 using NL.AI.ToolDemo.Tools;
@@ -137,6 +138,13 @@ namespace NL.AI.ToolDemo.ECGData.ViewModels
             _fileInfoBusi = fileInfoBusi;
             InitFields();
             InitCommands();
+
+            _iMessageModule.Register<string>(this, AIToolMessageKeyEnum.FreshDataList, OnFresh);
+        }
+
+        private async Task OnFresh(string arg)
+        {
+            await Search(PageNo, PageSize, string.Empty, -1, -1, -1, string.Empty, string.Empty, string.Empty);
         }
 
         private void InitFields()
@@ -159,31 +167,7 @@ namespace NL.AI.ToolDemo.ECGData.ViewModels
         private async Task OnImport(string fileUrl)
         {
             await TaskEx.FromResult(0);
-            if(System.IO.File.Exists(fileUrl))
-            {
-                FileInfo fileInfo = new FileInfo()
-                {
-                    Id = IdWorker.NewDefaultId,
-                    PatientName = "李四",
-                    PatientGender = 1,
-                    PatientAge = 30,
-                    PatientAgeUnit = 1,
-                    AIDiagnosis = "asdfasdfasdfasdf",
-                    Remark = "asdfasdfasdf",
-                    LocalFileUrl = fileUrl,
-                };
-                var result = await _fileInfoBusi.CreateFileInfo(fileInfo);
-                var message = _dialogFactory.GetDialog<IMessageDialog>();
-                if(result)
-                {
-                    message.ShowMessage("提示", "导入成功", null, null);
-                    await Search(PageNo, PageSize, string.Empty, -1, -1, -1, string.Empty, string.Empty, string.Empty);
-                }
-                else
-                {
-                    message.ShowMessage("提示", "导入失败", null, null);
-                }
-            }
+            _iMessageModule.Send(AIToolMessageKeyEnum.ImportFile, fileUrl);
         }
 
         private async Task OnSearch(object arg)

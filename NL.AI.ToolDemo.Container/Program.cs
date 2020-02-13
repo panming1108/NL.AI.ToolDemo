@@ -1,10 +1,9 @@
 ﻿using NL.CardioReader.VoidPower.VOnly.IF;
 using NL.CardioReader.VoidPower.WPFContainer;
 using System;
-using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
 
 namespace NL.AI.ToolDemo.Container
 {
@@ -13,9 +12,8 @@ namespace NL.AI.ToolDemo.Container
         [STAThread]
         public static void Main(string[] orgs)
         {
-            var mutex = new Mutex(true, "NL.AI.ToolDemo.Container", out bool createNew);
-
-            if (createNew)
+            Process instance = ProcessMessageHelper.RunningInstance();
+            if (instance == null)
             {
                 string[] list = new string[] {
                     "NL.SkyCastle.Infra.Trailer.NLogProvider.F4V"
@@ -36,6 +34,7 @@ namespace NL.AI.ToolDemo.Container
 
                     ,"NL.AI.ToolDemo.BLL"
                     ,"NL.AI.ToolDemo.DAL"
+                    ,"NL.AI.ToolDemo.Modules.ProcessControl"
                     ,"NL.AI.ToolDemo.ECGData.Views"
                     ,"NL.AI.ToolDemo.CommonTools.Views"
                     ,"NL.AI.ToolDemo.CommonTools.ViewModels"
@@ -47,7 +46,18 @@ namespace NL.AI.ToolDemo.Container
 
                 Startup startup = new Startup();
                 startup.Run();
-                mutex.WaitOne();
+            }
+            else
+            {
+                if (orgs.Count() == 1)
+                {
+                    FileInfo fileInfo = new FileInfo(orgs[0]);
+                    if (fileInfo.Exists)
+                    {
+                        ProcessMessageHelper.SendMessage(instance, fileInfo.FullName);
+                    }
+                }
+                ProcessMessageHelper.HandleRunningInstance(instance);                              
             }
         }
     }
