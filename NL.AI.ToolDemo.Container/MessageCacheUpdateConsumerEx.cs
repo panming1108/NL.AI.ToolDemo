@@ -103,7 +103,7 @@ namespace NL.AI.ToolDemo.Container
             foreach (var item in maps)
             {
                 //状态在未提交之前
-                //FileSetConfig(item, config);
+                FileSetConfig(item, config);
             }
 
             reportConsultStatusEnum = ReportConsultStatusEnum.NotSubmitAndNotHang;
@@ -117,6 +117,7 @@ namespace NL.AI.ToolDemo.Container
 
             _cacheManager.TrySet<ReportConsultStatusEnum>(CacheKeyEnum.ReportConsultStatus, reportConsultStatusEnum);
 
+            await TaskEx.Delay(500);
             //发送消息，继续传递采集Id
             _messageModule.Send<long>(MessagerKeyEnum.UpdateFileCacheAndEcgLoad, id);
         }

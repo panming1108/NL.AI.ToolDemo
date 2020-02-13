@@ -86,6 +86,46 @@ namespace NL.AI.ToolDemo.Container
                 {
                     ConfigKey = "EighteenLead",
                     ConfigValue = "9"
+                },
+                new BODoctorConfig()
+                {
+                    ConfigKey = "WaveSpeed",
+                    ConfigValue = "250"
+                },
+                new BODoctorConfig()
+                {
+                    ConfigKey = "WaveGain",
+                    ConfigValue = "10"
+                },
+                new BODoctorConfig()
+                {
+                    ConfigKey = "LeadType1",
+                    ConfigValue = "0"
+                },
+                new BODoctorConfig()
+                {
+                    ConfigKey = "LeadType2",
+                    ConfigValue = "0"
+                },
+                new BODoctorConfig()
+                {
+                    ConfigKey = "FilterBaseLine",
+                    ConfigValue = "0"
+                },
+                new BODoctorConfig()
+                {
+                    ConfigKey = "FilterLowPass",
+                    ConfigValue = "0"
+                },
+                new BODoctorConfig()
+                {
+                    ConfigKey = "FilterNotch",
+                    ConfigValue = "0"
+                },
+                new BODoctorConfig()
+                {
+                    ConfigKey = "WaveDisplay",
+                    ConfigValue = "0"
                 }
             };
             _cacheManager.TrySet(CacheKeyEnum.BaseDoctorConfig, doctorConfigs);
