@@ -21,6 +21,7 @@ namespace NL.AI.ToolDemo.Container.ViewModels
         private Uri _tranformPage = new Uri("/NL.AI.ToolDemo.Container;component/TransformPage.xaml", UriKind.Relative);
         private Uri _waveReviewPage = new Uri("/NL.AI.ToolDemo.Container;component/WaveReviewPage.xaml", UriKind.Relative);
         private Uri _dataListPage = new Uri("/NL.AI.ToolDemo.Container;component/DataListPage.xaml", UriKind.Relative);
+        private Uri _ecgViewPage = new Uri("/NL.AI.ToolDemo.Container;component/ECGViewPage.xaml", UriKind.Relative);
         /// <summary>
         /// 头部菜单
         /// </summary>
@@ -94,6 +95,17 @@ namespace NL.AI.ToolDemo.Container.ViewModels
         {
             MinCommand = _commandFactory.GetCommand<object>(WinMin);
             CloseCommand = _commandFactory.GetCommand<object>(WinClose);
+
+            iMessageModule.Register<NaviKeyEnum>(this, MessagerKeyEnum.PageNavi, Navi);
+        }
+
+        private async Task Navi(NaviKeyEnum arg)
+        {
+            await TaskEx.FromResult(0);
+            if(arg == NaviKeyEnum.DiagnosisStation)
+            {
+                CurrentPage = _ecgViewPage;
+            }
         }
 
         private async Task WinMin(object o)

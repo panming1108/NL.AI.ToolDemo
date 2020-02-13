@@ -1,6 +1,8 @@
 ﻿using NL.AI.ToolDemo.Container.IViewModels;
 using NL.AI.ToolDemo.Enum;
 using NL.AI.ToolDemo.Modules.ProcessControl;
+using NL.CardioReader.MidEnd.BizObject;
+using NL.CardioReader.MidEnd.ContainerEx;
 using NL.CardioReader.MidEnd.VM.KeyEnum;
 using NL.CardioReader.VoidPower.VMModule.IF;
 using NL.CardioReader.VoidPower.VOnly.IF;
@@ -33,6 +35,9 @@ namespace NL.AI.ToolDemo.Container
         private readonly IMessageModule _messageModule;
         private readonly IDialogFactory _dialogFactory;
         private readonly IImportEntrance _importEntrance;
+        private readonly IECGViewStartEntrance _eCGViewStartEntrance;
+        private readonly ICacheManager _cacheManager;
+        private readonly IMessageCacheUpdateConsumer _messageCacheUpdateConsumer;
 
         public MainWindow()
         {
@@ -40,22 +45,57 @@ namespace NL.AI.ToolDemo.Container
 
             InitWindowSize();
 
+            Loaded += MainWindow_Loaded;
             Unloaded += MainWindow_Unloaded;
 
             _messageModule = IocManagerInstance.ResolveType<IMessageModule>();
             _dialogFactory = IocManagerInstance.ResolveType<IDialogFactory>();
+            _cacheManager = IocManagerInstance.ResolveType<ICacheManager>();
             _importEntrance = IocManagerInstance.ResolveType<IImportEntrance>();
+            _eCGViewStartEntrance = IocManagerInstance.ResolveType<IECGViewStartEntrance>();
+            _messageCacheUpdateConsumer = new MessageCacheUpdateConsumerEx();
 
             _messageModule.Register<WindowOperateEnum>(this, MessagerKeyEnum.MainWinChanged, MainWinChanged);
-            _messageModule.Register<string>(this, AIToolMessageKeyEnum.ProcessMessage, OnReceiveProcessMessage);
+            _messageModule.Register<string>(this, AIToolMessageKeyEnum.ProcessMessage, OnReceiveProcessMessage);            
 
             DataContext = IocManagerInstance.ResolveType<IMainViewModel>();
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            _messageCacheUpdateConsumer.Init();
+
+            List<BODoctorConfig> doctorConfigs = new List<BODoctorConfig>()
+            {
+                new BODoctorConfig()
+                {
+                    ConfigKey = "ECGBackViewMode",
+                    ConfigValue = "2"
+                },
+                new BODoctorConfig()
+                {
+                    ConfigKey = "TwelveLead",
+                    ConfigValue = "2"
+                },
+                new BODoctorConfig()
+                {
+                    ConfigKey = "FifteenLead",
+                    ConfigValue = "6"
+                },
+                new BODoctorConfig()
+                {
+                    ConfigKey = "EighteenLead",
+                    ConfigValue = "9"
+                }
+            };
+            _cacheManager.TrySet(CacheKeyEnum.BaseDoctorConfig, doctorConfigs);
         }
 
         private void MainWindow_Unloaded(object sender, RoutedEventArgs e)
         {
             _messageModule.Unregister<string>(this, AIToolMessageKeyEnum.ProcessMessage, OnReceiveProcessMessage);
             _messageModule.Unregister<WindowOperateEnum>(this, MessagerKeyEnum.MainWinChanged, MainWinChanged);
+            Loaded -= MainWindow_Loaded;
             Unloaded -= MainWindow_Unloaded;
         }
 

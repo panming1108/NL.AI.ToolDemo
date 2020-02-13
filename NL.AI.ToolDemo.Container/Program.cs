@@ -18,10 +18,25 @@ namespace NL.AI.ToolDemo.Container
                 string[] list = new string[] {
                     "NL.SkyCastle.Infra.Trailer.NLogProvider.F4V"
                     ,"NL.SkyCastle.Infra.TrailerBase.F4V"
+                    ,"NL.SkyCastle.Infra.Mapping.EmitMapping.F4V"
+                    ,"NL.SkyCastle.Infra.Serialize.JsonSerialize.F4V"
 
                     ,"NL.CardioReader.VoidPower.VMModule.CoreLib.F4V"
                     ,"NL.CardioReader.VoidPower.VMOnly.CoreLib.F4V"
                     ,"NL.CardioReader.VoidPower.WPFContainer.WPF4"
+
+                    ,"NL.CardioReader.ImagineBreaker.BaseLib.F4V"
+                    ,"NL.CardioReader.ImagineBreaker.CoreLib.WPF4"
+                    ,"NL.AmuletHeart.ECGL.CoreLib.WPF4"
+                    ,"NL.AmuletHeart.ECGL.BaseLib.F4V"
+                    ,"NL.AmuletHeart.ECGL.InfLib.WPF4"
+                    ,"NL.AmuletHeart.ECGL.RealizationLib.WPF4"
+                    ,"NL.GradationProjection.Delineation.WPF4"
+                    ,"NL.CardioReader.MidEnd.Views.DiagECG.WPF4"
+                    ,"NL.CardioReader.MidEnd.ContainerEx"
+                    ,"NL.CardioReader.MidEnd.Themes.WPF4"
+                    ,"NL.CardioReader.MidEnd.Views.BeatEditor.WPF4"
+                    ,"NL.CardioReader.MidEnd.ECGProvider"
 
                     ,"NL.CardioReader.CommonControlsThemes.WPF4"
                     ,"NL.CardioReader.CommonControlsSource.MainFrame.WPF4"

@@ -3,6 +3,8 @@ using NL.AI.ToolDemo.Enum;
 using NL.AI.ToolDemo.IBLL;
 using NL.AI.ToolDemo.Model;
 using NL.AI.ToolDemo.Tools;
+using NL.CardioReader.MidEnd.VM.CacheObject;
+using NL.CardioReader.MidEnd.VM.KeyEnum;
 using NL.CardioReader.VoidPower.VMModule.IF;
 using NL.CardioReader.VoidPower.VMOnly.BaseLib;
 using NL.CardioReader.VoidPower.VMOnly.IF;
@@ -169,7 +171,16 @@ namespace NL.AI.ToolDemo.ECGData.ViewModels
         private async Task OnFileInfoDoubleClick(FileDataInfo fileInfo)
         {
             await TaskEx.FromResult(0);
-            Console.WriteLine(fileInfo.LocalFileUrl);
+            COAcquisitionFile cOAcquisitionFile = new COAcquisitionFile()
+            {
+                Id = IdWorker.NewDefaultId,
+                LocalFileUrl = fileInfo.LocalFileUrl,
+            };
+            List<COAcquisitionFile> cOAcquisitionFiles = new List<COAcquisitionFile>();
+            cOAcquisitionFiles.Add(cOAcquisitionFile);
+
+            _iCacheManager.TrySet(CacheKeyEnum.AcquisitionFileKey, cOAcquisitionFiles);
+            _iMessageModule.Send(MessagerKeyEnum.StartDiagModule, string.Empty);
         }
 
         private async Task OnImport(string fileUrl)

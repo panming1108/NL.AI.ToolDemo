@@ -42,6 +42,18 @@
     <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
     </Reference>
+    <Reference Include="NL.AmuletHeart.ECGBL.IF.F4V, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NL.AmuletHeart.ECGBL.IF.F4V.1.4.8\lib\net40\NL.AmuletHeart.ECGBL.IF.F4V.dll</HintPath>
+    </Reference>
+    <Reference Include="NL.CardioReader.ImagineBreaker.IF.F4V, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NL.CardioReader.ImagineBreaker.IF.F4V.1.4.6\lib\net40\NL.CardioReader.ImagineBreaker.IF.F4V.dll</HintPath>
+    </Reference>
+    <Reference Include="NL.CardioReader.MidEnd.VM.CacheObject.F4V, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NL.CardioReader.MidEnd.VM.CacheObject.F4V.1.4.10\lib\net40\NL.CardioReader.MidEnd.VM.CacheObject.F4V.dll</HintPath>
+    </Reference>
+    <Reference Include="NL.CardioReader.MidEnd.VM.KeyEnum.F4V, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NL.CardioReader.MidEnd.VM.KeyEnum.F4V.1.5.2\lib\net40\NL.CardioReader.MidEnd.VM.KeyEnum.F4V.dll</HintPath>
+    </Reference>
     <Reference Include="NL.CardioReader.VoidPower.VMModule.IF.F4V, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NL.CardioReader.VoidPower.VMModule.IF.F4V.1.3.2\lib\net40\NL.CardioReader.VoidPower.VMModule.IF.F4V.dll</HintPath>
     </Reference>
