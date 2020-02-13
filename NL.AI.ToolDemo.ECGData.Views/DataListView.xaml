@@ -90,7 +90,8 @@
                          ItemsSource="{Binding DataInfos}"
                          IsUseDataPager="False"
                          CanUserSortColumns="False"
-                         CanUserReorderColumns="False">
+                         CanUserReorderColumns="False"
+                         MouseDoubleClickCommand="{Binding FileInfoDoubleClickCommand}">
             <dms:EMCGridView.Columns>
                 <DataGridTemplateColumn Header="     患者姓名" Width="1.5*">
                     <DataGridTemplateColumn.CellTemplate>

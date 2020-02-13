@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NL.AI.ToolDemo.Model
 {
-    public class FileInfo
+    public class FileDataInfo
     {
         public long Id { get; set; }
         public string PatientName { get; set; }

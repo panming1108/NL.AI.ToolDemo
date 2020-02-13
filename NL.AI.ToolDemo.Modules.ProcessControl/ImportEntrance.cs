@@ -35,7 +35,7 @@ namespace NL.AI.ToolDemo.Modules.ProcessControl
             _skyCastleTrailer.WriteInfo("开始导入：" + fileUrl);
             if (System.IO.File.Exists(fileUrl))
             {
-                FileInfo fileInfo = new FileInfo()
+                FileDataInfo fileInfo = new FileDataInfo()
                 {
                     Id = IdWorker.NewDefaultId,
                     PatientName = "李四" + DateTime.Now.Second,

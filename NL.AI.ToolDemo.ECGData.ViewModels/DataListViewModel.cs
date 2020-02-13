@@ -29,7 +29,7 @@ namespace NL.AI.ToolDemo.ECGData.ViewModels
         private int _patientAgeUnit;
         private string _localFileUrl;
         private string _remark;
-        private List<FileInfo> _dataInfos;
+        private List<FileDataInfo> _dataInfos;
         private int _pageNo;
         private int _pageSize;
         private int _itemCount;
@@ -109,7 +109,7 @@ namespace NL.AI.ToolDemo.ECGData.ViewModels
             get => _patientAge;
             set => SetPropertyNotify(ref _patientAge, value);
         }
-        public List<FileInfo> DataInfos
+        public List<FileDataInfo> DataInfos
         {
             get => _dataInfos;
             set => SetPropertyNotify(ref _dataInfos, value);
@@ -132,6 +132,7 @@ namespace NL.AI.ToolDemo.ECGData.ViewModels
 
         public ICommand SearchCommand { get; set; }
         public ICommand ImportCommand { get; set; }
+        public ICommand FileInfoDoubleClickCommand { get; set; }
 
         public DataListViewModel(IFileInfoBusi fileInfoBusi, IMessageModule iMessageModule, ICacheManager iCacheManager, ISkyCastleTrailer skyCastleTrailer, IDialogFactory dialogFactory, ICommandFactory commandFactory) : base(iMessageModule, iCacheManager, skyCastleTrailer, dialogFactory, commandFactory)
         {
@@ -152,7 +153,7 @@ namespace NL.AI.ToolDemo.ECGData.ViewModels
             _pageNo = 1;
             _pageSize = 10;
             _pageSizeSource = new int[] { 5, 10, 20 };
-            _dataInfos = new List<FileInfo>();
+            _dataInfos = new List<FileDataInfo>();
             _genderSource = new List<EnumDictionary>();
             _patientName = string.Empty;
             _patientAgeUnit = -1;
@@ -162,6 +163,13 @@ namespace NL.AI.ToolDemo.ECGData.ViewModels
         {
             SearchCommand = _commandFactory.GetCommand<object>(OnSearch);
             ImportCommand = _commandFactory.GetCommand<string>(OnImport);
+            FileInfoDoubleClickCommand = _commandFactory.GetCommand<FileDataInfo>(OnFileInfoDoubleClick);
+        }
+
+        private async Task OnFileInfoDoubleClick(FileDataInfo fileInfo)
+        {
+            await TaskEx.FromResult(0);
+            Console.WriteLine(fileInfo.LocalFileUrl);
         }
 
         private async Task OnImport(string fileUrl)

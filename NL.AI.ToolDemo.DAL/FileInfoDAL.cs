@@ -11,7 +11,7 @@ namespace NL.AI.ToolDemo.DAL
 {
     public class FileInfoDAL : DbBaseManagement, IFileInfoDAL
     {
-        public async Task<QueryList<FileInfo>> GetAllFileInfos(int pageNo, int pageSize, string patientName, int patientGender, int patientAge, int patientAgeUnit, string localFileUrl, string aIDiagnosis, string remark)
+        public async Task<QueryList<FileDataInfo>> GetAllFileInfos(int pageNo, int pageSize, string patientName, int patientGender, int patientAge, int patientAgeUnit, string localFileUrl, string aIDiagnosis, string remark)
         {
             int iCurrentCount = 0;
             while (iCurrentCount < 1)
@@ -51,12 +51,12 @@ namespace NL.AI.ToolDemo.DAL
             }
 
             var countResult = await ExecuteScalar<int>(sqlCount.ToString());
-            var result = await SqlQueryList<FileInfo>(sql.ToString());
+            var result = await SqlQueryList<FileDataInfo>(sql.ToString());
 
-            return new QueryList<FileInfo>() { ItemsCount = countResult, Data = result.ToList(), PageIndex = pageNo, PageSize = pageSize };
+            return new QueryList<FileDataInfo>() { ItemsCount = countResult, Data = result.ToList(), PageIndex = pageNo, PageSize = pageSize };
         }
 
-        public async Task<bool> InsertFileInfo(FileInfo fileInfo)
+        public async Task<bool> InsertFileInfo(FileDataInfo fileInfo)
         {
             string sql =
                 @"insert into FileInfo(Id,PatientName,PatientGender,PatientAge,PatientAgeUnit

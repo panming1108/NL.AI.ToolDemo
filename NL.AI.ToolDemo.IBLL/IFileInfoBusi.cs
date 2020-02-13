@@ -9,7 +9,7 @@ namespace NL.AI.ToolDemo.IBLL
 {
     public interface IFileInfoBusi
     {
-        Task<QueryList<FileInfo>> GetAllFileInfos(int pageNo, int pageSize, string patientName, int patientGender, int patientAge, int patientAgeUnit, string localFileUrl, string aIDiagnosis, string remark);
-        Task<bool> CreateFileInfo(FileInfo fileInfo);
+        Task<QueryList<FileDataInfo>> GetAllFileInfos(int pageNo, int pageSize, string patientName, int patientGender, int patientAge, int patientAgeUnit, string localFileUrl, string aIDiagnosis, string remark);
+        Task<bool> CreateFileInfo(FileDataInfo fileInfo);
     }
 }

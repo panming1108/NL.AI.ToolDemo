@@ -9,7 +9,7 @@ namespace NL.AI.ToolDemo.IDAL
 {
     public interface IFileInfoDAL
     {
-        Task<QueryList<FileInfo>> GetAllFileInfos(int pageNo, int pageSize, string patientName, int patientGender, int patientAge, int patientAgeUnit, string localFileUrl, string aIDiagnosis, string remark);
-        Task<bool> InsertFileInfo(FileInfo fileInfo);
+        Task<QueryList<FileDataInfo>> GetAllFileInfos(int pageNo, int pageSize, string patientName, int patientGender, int patientAge, int patientAgeUnit, string localFileUrl, string aIDiagnosis, string remark);
+        Task<bool> InsertFileInfo(FileDataInfo fileInfo);
     }
 }

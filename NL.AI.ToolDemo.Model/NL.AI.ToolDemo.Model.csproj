@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileInfo.cs" />
+    <Compile Include="FileDataInfo.cs" />
     <Compile Include="MenuNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryList.cs" />
