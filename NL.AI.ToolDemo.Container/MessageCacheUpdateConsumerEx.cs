@@ -39,7 +39,6 @@ namespace NL.AI.ToolDemo.Container
             _beatInfoBusi = IocManagerInstance.ResolveType<IBeatInfoBusi>();
             _eCGProviderFactory = IocManagerInstance.ResolveType<IECGProviderFactory>();
             _mapping = IocManagerInstance.ResolveType<IMapping>();
-            //_mapping = mapping;
 
             _messageModule.Register<string>(this, MessagerKeyEnum.ControlLoadData, ControlLoadData);
             _messageModule.Register<string>(this, MessagerKeyEnum.ControlClearData, ControlClearData);
