@@ -126,6 +126,16 @@ namespace NL.AI.ToolDemo.Container
                 {
                     ConfigKey = "WaveDisplay",
                     ConfigValue = "0"
+                },
+                new BODoctorConfig()
+                {
+                    ConfigKey = "BeatSign",
+                    ConfigValue = "True"
+                },
+                new BODoctorConfig()
+                {
+                    ConfigKey = "BeatNo",
+                    ConfigValue = "True"
                 }
             };
             _cacheManager.TrySet(CacheKeyEnum.BaseDoctorConfig, doctorConfigs);

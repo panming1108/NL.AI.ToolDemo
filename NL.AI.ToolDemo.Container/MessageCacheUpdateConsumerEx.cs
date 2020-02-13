@@ -26,9 +26,9 @@ namespace NL.AI.ToolDemo.Container
         private readonly ICacheManager _cacheManager;
         //private readonly ICommonApi _commonApi;
         //private readonly IDiagCacheManagementBasic _diagCacheManagement;
-        //private readonly IBeatInfoBusi _beatInfoBusi;
+        private readonly IBeatInfoBusi _beatInfoBusi;
         private readonly IECGProviderFactory _eCGProviderFactory;
-        //private readonly IMapping _mapping;
+        private readonly IMapping _mapping;
 
         public MessageCacheUpdateConsumerEx()
         {
@@ -36,8 +36,9 @@ namespace NL.AI.ToolDemo.Container
             _cacheManager = IocManagerInstance.ResolveType<ICacheManager>();
             //_commonApi = IocManagerInstance.ResolveType<ICommonApi>();
             //_diagCacheManagement = diagCacheManagement;
-            //_beatInfoBusi = beatInfoBusi;
-            _eCGProviderFactory = IocManagerInstance.ResolveType<IECGProviderFactory>(); 
+            _beatInfoBusi = IocManagerInstance.ResolveType<IBeatInfoBusi>();
+            _eCGProviderFactory = IocManagerInstance.ResolveType<IECGProviderFactory>();
+            _mapping = IocManagerInstance.ResolveType<IMapping>();
             //_mapping = mapping;
 
             _messageModule.Register<string>(this, MessagerKeyEnum.ControlLoadData, ControlLoadData);
@@ -315,10 +316,10 @@ namespace NL.AI.ToolDemo.Container
                 , IocManagerInstance.ResolveType<IGraphParmNDPI>(), IocManagerInstance.ResolveType<IGraphDataConversionExtension>());
 
             //心搏信息
-            //var beats = _beatInfoBusi.GetBeatInfo(file.LocalFileUrl);
-            //_cacheManager.TrySet<List<BeatInfo>>(CacheKeyEnum.BeatInfoKey.ToString(), _mapping.IEnumerableMap<BOBeatInfo, BeatInfo>(beats).ToList());
-            //_cacheManager.TrySet<List<BeatInterval>>(CacheKeyEnum.BeatIntervalKey.ToString(),
-            //    _mapping.IEnumerableMap<BOBeatInterval, BeatInterval>(_beatInfoBusi.GenerateBeatInterval(beats, (int)provider.SamplePerSecond)).ToList());
+            var beats = _beatInfoBusi.GetBeatInfo(file.LocalFileUrl);
+            _cacheManager.TrySet<List<BeatInfo>>(CacheKeyEnum.BeatInfoKey.ToString(), _mapping.IEnumerableMap<BOBeatInfo, BeatInfo>(beats).ToList());
+            _cacheManager.TrySet<List<BeatInterval>>(CacheKeyEnum.BeatIntervalKey.ToString(),
+                _mapping.IEnumerableMap<BOBeatInterval, BeatInterval>(_beatInfoBusi.GenerateBeatInterval(beats, (int)provider.SamplePerSecond)).ToList());
 
             ///注销上一个 provider
             _cacheManager.TryGet<IWavePulseReader>(CacheKeyEnum.ECGBaseInfoKey)?.Dispose();
