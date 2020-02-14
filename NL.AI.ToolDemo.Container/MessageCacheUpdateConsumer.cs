@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 
 namespace NL.AI.ToolDemo.Container
 {
-    public class MessageCacheUpdateConsumerEx : IMessageCacheUpdateConsumer
+    public class MessageCacheUpdateConsumer : IMessageCacheUpdateConsumer
     {
         private readonly IMessageModule _messageModule;
         private readonly ICacheManager _cacheManager;
@@ -30,15 +30,15 @@ namespace NL.AI.ToolDemo.Container
         private readonly IECGProviderFactory _eCGProviderFactory;
         private readonly IMapping _mapping;
 
-        public MessageCacheUpdateConsumerEx()
+        public MessageCacheUpdateConsumer(IMessageModule messageModule, ICacheManager cacheManager, IBeatInfoBusi beatInfoBusi, IECGProviderFactory eCGProviderFactory, IMapping mapping)
         {
-            _messageModule = IocManagerInstance.ResolveType<IMessageModule>();
-            _cacheManager = IocManagerInstance.ResolveType<ICacheManager>();
+            _messageModule = messageModule;
+            _cacheManager = cacheManager;
             //_commonApi = IocManagerInstance.ResolveType<ICommonApi>();
             //_diagCacheManagement = diagCacheManagement;
-            _beatInfoBusi = IocManagerInstance.ResolveType<IBeatInfoBusi>();
-            _eCGProviderFactory = IocManagerInstance.ResolveType<IECGProviderFactory>();
-            _mapping = IocManagerInstance.ResolveType<IMapping>();
+            _beatInfoBusi = beatInfoBusi;
+            _eCGProviderFactory = eCGProviderFactory;
+            _mapping = mapping;
 
             _messageModule.Register<string>(this, MessagerKeyEnum.ControlLoadData, ControlLoadData);
             _messageModule.Register<string>(this, MessagerKeyEnum.ControlClearData, ControlClearData);

@@ -38,6 +38,7 @@ namespace NL.AI.ToolDemo.Container
         private readonly IECGViewStartEntrance _eCGViewStartEntrance;
         private readonly ICacheManager _cacheManager;
         private readonly IMessageCacheUpdateConsumer _messageCacheUpdateConsumer;
+        private readonly ILoadConsumer _loadConsumer;
 
         public MainWindow()
         {
@@ -53,7 +54,8 @@ namespace NL.AI.ToolDemo.Container
             _cacheManager = IocManagerInstance.ResolveType<ICacheManager>();
             _importEntrance = IocManagerInstance.ResolveType<IImportEntrance>();
             _eCGViewStartEntrance = IocManagerInstance.ResolveType<IECGViewStartEntrance>();
-            _messageCacheUpdateConsumer = new MessageCacheUpdateConsumerEx();
+            _messageCacheUpdateConsumer = IocManagerInstance.ResolveType<IMessageCacheUpdateConsumer>();
+            _loadConsumer = IocManagerInstance.ResolveType<ILoadConsumer>();
 
             _messageModule.Register<WindowOperateEnum>(this, MessagerKeyEnum.MainWinChanged, MainWinChanged);
             _messageModule.Register<string>(this, AIToolMessageKeyEnum.ProcessMessage, OnReceiveProcessMessage);            
@@ -64,6 +66,7 @@ namespace NL.AI.ToolDemo.Container
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             _messageCacheUpdateConsumer.Init();
+            _loadConsumer.Init(this);
 
             List<BODoctorConfig> doctorConfigs = new List<BODoctorConfig>()
             {

@@ -284,7 +284,7 @@
       <DependentUpon>ECGViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="IViewModels\IMainViewModel.cs" />
-    <Compile Include="MessageCacheUpdateConsumerEx.cs" />
+    <Compile Include="MessageCacheUpdateConsumer.cs" />
     <Compile Include="ProcessMessageHelper.cs" />
     <Compile Include="SingleProcessWindow.cs" />
     <Compile Include="Startup.cs" />

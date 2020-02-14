@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EmitMapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EmitMapper.1.0.0\lib\EmitMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
     </Reference>
@@ -39,6 +42,9 @@
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NL.AmuletHeart.ECGBL.IF.F4V, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NL.AmuletHeart.ECGBL.IF.F4V.1.4.8\lib\net40\NL.AmuletHeart.ECGBL.IF.F4V.dll</HintPath>
@@ -64,8 +70,23 @@
     <Reference Include="NL.SkyCastle.DXC.Infrastructure.Treasury.F4V, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NL.SkyCastle.DXC.Infrastructure.Treasury.F4V.1.4.9\lib\net40\NL.SkyCastle.DXC.Infrastructure.Treasury.F4V.dll</HintPath>
     </Reference>
+    <Reference Include="NL.SkyCastle.Infra.ISerialize.F4V, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NL.SkyCastle.Infra.ISerialize.F4V.1.0.2\lib\net40\NL.SkyCastle.Infra.ISerialize.F4V.dll</HintPath>
+    </Reference>
     <Reference Include="NL.SkyCastle.Infra.ITrailer.F4V, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NL.SkyCastle.Infra.ITrailer.F4V.1.0.1\lib\net40\NL.SkyCastle.Infra.ITrailer.F4V.dll</HintPath>
+    </Reference>
+    <Reference Include="NL.SkyCastle.Infra.Mapping.EmitMapping.F4V, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NL.SkyCastle.Infra.Mapping.EmitMapping.F4V.1.0.0\lib\net40\NL.SkyCastle.Infra.Mapping.EmitMapping.F4V.dll</HintPath>
+    </Reference>
+    <Reference Include="NL.SkyCastle.Infra.Mapping.Interface.F4V, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NL.SkyCastle.Infra.Mapping.Interface.F4V.1.0.1\lib\net40\NL.SkyCastle.Infra.Mapping.Interface.F4V.dll</HintPath>
+    </Reference>
+    <Reference Include="NL.SkyCastle.Infra.Serialize.JsonSerialize.F4V, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NL.SkyCastle.Infra.Serialize.JsonSerialize.F4V.1.0.1\lib\net40\NL.SkyCastle.Infra.Serialize.JsonSerialize.F4V.dll</HintPath>
+    </Reference>
+    <Reference Include="NLC.ECG.Core.AnalysisService">
+      <HintPath>..\Dependency\CopyToBin\NLC.ECG.Core.AnalysisService.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

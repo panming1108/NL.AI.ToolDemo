@@ -73,7 +73,7 @@ namespace NL.AI.ToolDemo.DAL
             {
                 conditionSql.Append($" and PatientName like '%{patientName}%'");
             }
-            if (patientGender >= 0)
+            if (patientGender > 0)
             {
                 conditionSql.Append($" and PatientGender = {patientGender}");
             }
